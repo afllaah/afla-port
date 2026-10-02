@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aflaa — student portfolio, projects, experience, and creative work." />
+  <title>Aflaa — Creative Student Portfolio</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --surface:rgba(255,255,255,.76);
+      --surface-solid:#ffffff;
+      --text:#111827;
+      --muted:#667085;
+      --line:rgba(17,24,39,.09);
+      --accent:#6d5dfc;
+      --accent-2:#8b7cff;
+      --accent-soft:rgba(109,93,252,.11);
+      --shadow:0 22px 70px rgba(40,44,75,.11);
+      --nav:rgba(255,255,255,.70);
+    }
+    body.dark{
+      --bg:#080b13;
+      --surface:rgba(18,22,34,.76);
+      --surface-solid:#111522;
+      --text:#f4f6fb;
+      --muted:#9aa4b7;
+      --line:rgba(255,255,255,.09);
+      --accent:#8b7cff;
+      --accent-2:#a497ff;
+      --accent-soft:rgba(139,124,255,.13);
+      --shadow:0 26px 80px rgba(0,0,0,.38);
+      --nav:rgba(12,16,27,.72);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      transition:background .35s,color .35s;
+    }
+    body:before, body:after{
+      content:"";
+      position:fixed;
+      width:430px;height:430px;border-radius:50%;
+      filter:blur(80px);opacity:.20;z-index:-2;pointer-events:none;
+      transition:opacity .4s;
+    }
+    body:before{left:-210px;top:8%;background:#6d5dfc}
+    body:after{right:-220px;bottom:2%;background:#9a4dff}
+    .grain{
+      position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    .nav{
+      position:fixed;top:18px;left:50%;transform:translateX(-50%);
+      width:min(1080px,92%);z-index:30;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      padding:10px 14px 10px 18px;
+      border:1px solid var(--line);border-radius:999px;
+      background:var(--nav);backdrop-filter:blur(18px);
+      box-shadow:0 12px 40px rgba(20,20,40,.08);
+    }
+    .brand{font-weight:900;letter-spacing:-.05em;font-size:1.05rem}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;gap:6px;align-items:center}
+    .nav-links a{
+      padding:8px 11px;border-radius:999px;font-size:.78rem;color:var(--muted);
+      transition:.25s;
+    }
+    .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--accent-soft)}
+    .theme{
+      width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
+      background:var(--surface-solid);color:var(--text);cursor:pointer;display:grid;place-items:center;
+    }
+    .menu{display:none}
+    section{padding:110px 0}
+    #home{min-height:100vh;display:grid;place-items:center;padding-top:145px}
+    .hero{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:70px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;
+      color:var(--accent);background:var(--accent-soft);font-size:.78rem;font-weight:800;
+      border:1px solid rgba(109,93,252,.12);
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+    .eyebrow-text{background:linear-gradient(110deg,var(--accent) 20%,var(--text) 48%,var(--accent) 76%);background-size:220% 100%;animation:name-light 5.2s ease-in-out .4s infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+    h1{font-size:clamp(3.4rem,7vw,6.8rem);line-height:.92;letter-spacing:-.075em;margin:20px 0}
+    .gradient{background:linear-gradient(110deg,var(--text) 14%,var(--accent) 42%,#fff 50%,var(--accent-2) 58%,var(--text) 86%);background-size:240% 100%;animation:name-light 4.5s ease-in-out infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero .reveal.show .eyebrow{animation:hero-text-in .65s cubic-bezier(.2,.75,.25,1) .12s both}
+    .hero .reveal.show h1{animation:hero-text-in .8s cubic-bezier(.2,.75,.25,1) .28s both}
+    .hero .eyebrow .dot{animation:dot-pulse 2.2s ease-in-out infinite}
+    @keyframes hero-text-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes dot-pulse{50%{box-shadow:0 0 0 8px var(--accent-soft)}}
+    @keyframes name-light{0%,14%{background-position:100% center}86%,100%{background-position:0% center}}
+    .hero p{max-width:650px;color:var(--muted);font-size:1.03rem}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:12px 17px;border-radius:13px;border:1px solid var(--line);font-weight:800;font-size:.88rem;
+      transition:transform .25s,box-shadow .25s,background .25s;
+    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 13px 30px rgba(60,50,130,.16)}
+    .btn.primary{background:var(--text);color:var(--bg);border-color:transparent}
+    .btn.ghost{background:var(--surface)}
+    .mini-links{display:flex;gap:18px;margin-top:28px;color:var(--muted);font-size:.78rem}
+    .mini-links a:hover{color:var(--accent)}
+    .portrait-wrap{position:relative;display:flex;justify-content:center}
+    .portrait-card{
+      width:min(320px,75vw);aspect-ratio:2/3;border-radius:32px;overflow:hidden;
+      transform:rotate(2.5deg);animation:portrait-float 5s ease-in-out infinite;border:1px solid var(--line);background:var(--surface);
+      box-shadow:var(--shadow);position:relative;
+    }
+    @keyframes portrait-float{0%,100%{transform:translateY(0) rotate(2.5deg)}50%{transform:translateY(-9px) rotate(2.5deg)}}
+    .portrait-card:after{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 50%,rgba(109,93,252,.16))}
+    .portrait-card img{width:100%;height:100%;object-fit:contain;object-position:center;filter:saturate(.92) contrast(1.02)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:42px}
+    .kicker{color:var(--accent);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em;font-weight:900}
+    h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.055em;line-height:1;margin:8px 0}
+    .section-head p{max-width:500px;color:var(--muted);margin:0}
+    .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px}
+    .card{
+      border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(16px);
+      border-radius:24px;box-shadow:var(--shadow);
+    }
+    .about-copy{padding:34px}
+    .about-copy p{color:var(--muted);font-size:1rem}
+    .about-copy p:first-child{color:var(--text);font-size:1.12rem}
+    .quick-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}
+    .fact{padding:17px;border-radius:17px;background:var(--accent-soft);border:1px solid var(--line)}
+    .fact b{display:block;font-size:.82rem}.fact span{display:block;color:var(--muted);font-size:.74rem;margin-top:3px}
+    .interest{padding:34px;display:flex;flex-direction:column;justify-content:center}
+    .interest h3{margin:0 0 15px;font-size:1.25rem}
+    .pills{display:flex;flex-wrap:wrap;gap:9px}
+    .pill{padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface-solid);font-size:.76rem;color:var(--muted)}
+    .skills{margin-top:28px;padding:24px}
+    .toolkit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+    .tool-item{min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 8px;border:1px solid var(--line);border-radius:14px;background:var(--surface-solid);text-align:center}
+    .tool-mark{width:38px;height:38px;display:grid;place-items:center;font-weight:900;font-size:.78rem}
+    .tool-mark.html{background:#e44d26;color:#fff;clip-path:polygon(10% 0,90% 0,82% 88%,50% 100%,18% 88%)}
+    .tool-mark.css{background:#1572b6;color:#fff;clip-path:polygon(10% 0,90% 0,82% 88%,50% 100%,18% 88%)}
+    .tool-mark.php{width:auto;color:#777bb4;font-size:1.05rem;font-style:italic;letter-spacing:.01em}
+    .tool-mark.canva{width:auto;color:#00c4cc;font-size:1.08rem;font-style:italic}
+    .tool-mark.javascript{background:#f0db4f;color:#323330;border-radius:7px}
+    .tool-mark.python{background:linear-gradient(135deg,#3776ab 0 50%,#ffd343 50%);color:#fff;border-radius:9px}
+    .tool-mark.cpp{background:#659ad2;color:#fff;border-radius:7px;font-size:.7rem}
+    .tool-mark.csharp{background:#68217a;color:#fff;border-radius:7px;font-size:.7rem}
+    .tool-mark.figma{position:relative;width:24px;height:38px;border-radius:12px;background:linear-gradient(#f24e1e 0 33%,#ff7262 33% 66%,#a259ff 66%)}
+    .tool-mark.figma:after{content:"";position:absolute;right:-12px;top:0;width:12px;height:12px;border-radius:50%;background:#1abcfe;box-shadow:0 12px 0 #0acf83}
+    .tool-item span:last-child{font-size:.72rem;font-weight:800;color:var(--muted)}
+    .timeline{position:relative;margin-left:12px;padding-left:28px}
+    .timeline:before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--accent),transparent)}
+    .experience{position:relative;padding:25px 27px;margin:0 0 16px;cursor:pointer;transition:background .25s,border-color .25s,box-shadow .25s}
+    .experience.is-selected{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 14px 32px rgba(50,40,100,.16)}
+    .experience:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    .experience:before{content:"";position:absolute;left:-33px;top:29px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+    .experience small{color:var(--accent);font-weight:900}.experience h3{margin:5px 0;font-size:1rem}.experience p,.experience li{color:var(--muted);font-size:.84rem}
+    .experience ul{margin:10px 0 0;padding-left:18px}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{overflow:hidden;position:relative;transition:transform .3s,box-shadow .3s;cursor:pointer}
+    .project:hover{transform:translateY(-7px);box-shadow:0 30px 75px rgba(50,40,100,.18)}
+    .project-media{height:240px;overflow:hidden;background:#ddd;position:relative}
+    .project-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+    .project:hover .project-media img{transform:scale(1.05)}
+    .project-body{padding:22px}
+    .project-body small{color:var(--accent);font-weight:900;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}
+    .project-body h3{font-size:1.3rem;margin:5px 0 8px}.project-body p{color:var(--muted);font-size:.82rem;margin:0 0 16px}
+    .tags{display:flex;flex-wrap:wrap;gap:7px}.tag{font-size:.68rem;padding:5px 8px;border-radius:8px;background:var(--accent-soft);color:var(--muted)}
+    .project-arrow{position:absolute;right:17px;bottom:17px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--text);color:var(--bg)}
+    .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}
+    .contact-info{padding:30px}
+    .contact-info>p{color:var(--muted);max-width:500px}
+    .contact-link{display:flex;align-items:center;gap:14px;padding:14px;margin-top:11px;border:1px solid var(--line);border-radius:15px;background:var(--surface)}
+    .contact-icon{width:39px;height:39px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:900}
+    .contact-link small{display:block;color:var(--muted);font-size:.67rem}.contact-link b{font-size:.82rem}
+    form{padding:30px}.field{margin-bottom:14px}.field label{display:block;font-size:.73rem;font-weight:800;margin-bottom:7px}.field input,.field textarea{
+      width:100%;border:1px solid var(--line);background:var(--surface-solid);color:var(--text);outline:none;border-radius:13px;padding:12px 13px;font:inherit;font-size:.82rem
+    }.field textarea{min-height:130px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--accent)}
+    footer{padding:30px 0 38px;border-top:1px solid var(--line);color:var(--muted);font-size:.75rem;display:flex;justify-content:space-between;gap:20px}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}.reveal.show{opacity:1;transform:none}
+    .modal{position:fixed;inset:0;background:rgba(4,6,12,.72);backdrop-filter:blur(14px);z-index:100;display:none;place-items:center;padding:20px}
+    .modal.open{display:grid}.modal-box{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--surface-solid);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);padding:24px;position:relative}
+    .modal-box img{width:100%;height:300px;object-fit:cover;border-radius:18px}.close{position:absolute;right:16px;top:16px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--text);cursor:pointer;font-size:1.2rem}
+    @media(prefers-reduced-motion:reduce){.hero .reveal.show .eyebrow,.hero .reveal.show h1,.hero .eyebrow .dot,.hero .eyebrow-text,.hero .gradient,.hero .portrait-card{animation:none}}
+    @media(max-width:850px){
+      .nav-links{display:none}.menu{display:block;border:0;background:none;color:var(--text);font-size:1.25rem}
+      .nav.mobile .nav-links{display:flex;position:absolute;top:60px;left:0;right:0;flex-wrap:wrap;justify-content:center;padding:12px;background:var(--nav);border:1px solid var(--line);border-radius:20px}
+      .hero,.about-grid,.contact-grid{grid-template-columns:1fr}.hero{gap:40px}.portrait-wrap{order:-1}
+      .portrait-card{width:min(280px,72vw)}
+      .projects{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}
+    }
+    @media(max-width:520px){
+      section{padding:85px 0}#home{padding-top:120px}.hero p{font-size:.94rem}h1{font-size:3.55rem}
+      .about-copy,.interest,.skills,.contact-info,form{padding:23px}.quick-facts{grid-template-columns:1fr}.toolkit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      footer{display:block}footer span{display:block;margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="nav" id="navbar">
+  <a class="brand" href="#home">afla<span>'</span>s</a>
+  <nav class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div style="display:flex;gap:7px;align-items:center">
+    <button class="theme" id="themeBtn" aria-label="Toggle theme">☾</button>
+    <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section id="home">
+  <div class="container hero">
+    <div class="reveal">
+      <div class="eyebrow"><i class="dot"></i><span class="eyebrow-text">Student • IT Enthusiast • Creative Explorer</span></div>
+      <h1>Halo, nama saya <span class="gradient">Aflaa.</span></h1>
+      <p>I’m an SMK student who enjoys turning ideas into digital experiences.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">View my projects ↗</a>
+        <a class="btn ghost" href="#contact">Let's connect</a>
+      </div>
+      <div class="mini-links">
+        <a href="mailto:aflahunnisa23@gmail.com">Email</a>
+        <a href="https://www.instagram.com/afleal.l/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </div>
+    <div class="portrait-wrap reveal">
+      <div class="portrait-card"><img src="assets/profile.jpeg" alt="Aflaa portrait"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">01 — About</div><h2>A little about me.</h2></div>
+      <p>Curious by nature, always learning, and always looking for the next thing to create.</p>
+    </div>
+    <div class="about-grid">
+      <article class="card about-copy reveal">
+        <p>I’m a student SMK TELKOM PURWOKERTO with a growing passion for IT and informatics. I enjoy learning how digital products work, experimenting with interfaces, and turning simple ideas into useful projects.</p>
+        <p>Outside technology, I love getting closer to nature. Exploring new places, hiking, and spending time outdoors give me fresh ideas and a different perspective. For me, learning is not only about screens and code — it is also about experiences.</p>
+        <p>I’m still growing, but I enjoy the process: trying, making mistakes, improving, and creating something I can be proud of.</p>
+        <div class="quick-facts">
+          <div class="fact"><b>IT & Informatics</b><span>Learning through real projects</span></div>
+          <div class="fact"><b>UI/UX</b><span>Simple, clean, user-friendly ideas</span></div>
+          <div class="fact"><b>Exploration</b><span>Nature, mountains & new places</span></div>
+          <div class="fact"><b>Growth mindset</b><span>Always curious, always improving</span></div>
+        </div>
+      </article>
+      <aside class="card interest reveal">
+        <h3>Things I’m into</h3>
+        <div class="pills">
+          <span class="pill">Web Development</span><span class="pill">UI/UX Design</span><span class="pill">Creative Tech</span>
+          <span class="pill">Data Science</span><span class="pill">Digital Projects</span><span class="pill">Nature</span>
+          <span class="pill">Hiking</span><span class="pill">Learning New Things</span>
+        </div>
+        <div class="skills">
+          <div class="kicker">My toolkit</div>
+          <div class="toolkit-grid">
+            <div class="tool-item"><span class="tool-mark html">5</span><span>HTML</span></div>
+            <div class="tool-item"><span class="tool-mark css">3</span><span>CSS</span></div>
+            <div class="tool-item"><span class="tool-mark php">PHP</span><span>PHP</span></div>
+            <div class="tool-item"><span class="tool-mark canva">Canva</span><span>Canva </span></div>
+            <div class="tool-item"><span class="tool-mark figma" aria-hidden="true"></span><span>Figma</span></div>
+            <div class="tool-item"><span class="tool-mark javascript">JS</span><span>JavaScript</span></div>
+            <div class="tool-item"><span class="tool-mark python">Py</span><span>Python</span></div>
+            <div class="tool-item"><span class="tool-mark cpp">C++</span><span>C++</span></div>
+            <div class="tool-item"><span class="tool-mark csharp">C#</span><span>C#</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">02 — Experience</div><h2>Things I’ve joined.</h2></div>
+      <p>Small steps, real experiences, and opportunities to learn outside the classroom.</p>
+    </div>
+    <div class="timeline">
+      <article class="card experience reveal" role="button" tabindex="0" aria-pressed="false">
+        <small>2025</small><h3>Python Data Science Event — DigiUp</h3>
+        <p>Learned the basics of using Python for data-focused work and discovered how data can be explored, processed, and turned into useful insights.</p>
+      </article>
+      <article class="card experience reveal" role="button" tabindex="0" aria-pressed="false">
+        <small>2026</small><h3>Relawan Generasi Bumi — Clean Up</h3>
+        <p>Joined a community clean-up movement focused on real action for a healthier environment and more sustainable ecosystems.</p>
+      </article>
+      <article class="card experience reveal" role="button" tabindex="0" aria-pressed="false">
+        <small>2026</small><h3>IITC — UI/UX Competition</h3>
+        <p>Explored UI/UX through a competition experience, developing ideas with attention to user needs, visual structure, and digital problem solving.</p>
+      </article>
+      <article class="card experience reveal" role="button" tabindex="0" aria-pressed="false">
+        <small>2026</small><h3>Google for Education</h3>
+        <p>Joined a learning experience around digital education and technology, gaining new perspectives on how digital tools can support learning.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">03 — Projects</div><h2>Things I’ve built.</h2></div>
+      <p>A collection of school, learning, and creative projects — click a card to see the story behind it.</p>
+    </div>
+    <div class="projects">
+      <article class="card project reveal" data-project="lms">
+        <div class="project-media"><img src="assets/project-lms.svg" alt="Learning Management System dashboard"></div>
+        <div class="project-body"><small>Learning platform</small><h3>Learning Management System</h3><p>A simple learning platform for accessing materials, checking attendance, submitting tasks, and taking quizzes in one place.</p><div class="tags"><span class="tag">Education</span><span class="tag">Web App</span><span class="tag">UI</span></div></div><div class="project-arrow">↗</div>
+      </article>
+      <article class="card project reveal" data-project="nusalingo">
+        <div class="project-media"><img src="assets/project-nusalingo.svg" alt="NusaLingo language learning dashboard"></div>
+        <div class="project-body"><small>Language platform</small><h3>NusaLingo</h3><p>A fun platform for discovering Indonesian languages and culture, with interactive learning content and quizzes to make practice more engaging.</p><div class="tags"><span class="tag">Culture</span><span class="tag">Quiz</span><span class="tag">Learning</span></div></div><div class="project-arrow">↗</div>
+      </article>
+      <article class="card project reveal" data-project="pos">
+        <div class="project-media"><img src="assets/project-warungpos.svg" alt="WarungPOS cashier dashboard"></div>
+        <div class="project-body"><small>Point of sale</small><h3>WarungPOS</h3><p>A practical cashier system for managing menus, quantities, shopping carts, totals, payments, QRIS, and transaction history.</p><div class="tags"><span class="tag">POS</span><span class="tag">Database</span><span class="tag">Cashier</span></div></div><div class="project-arrow">↗</div>
+      </article>
+      <article class="card project reveal" data-project="harvesting">
+        <div class="project-media"><img src="assets/project-harvesting.svg" alt="Harvesting the Future company website"></div>
+        <div class="project-body"><small>Company website</small><h3>Harvesting the Future</h3><p>A modern web concept for a mining company, focused on sustainable resources, future-ready technology, and a clear corporate story.</p><div class="tags"><span class="tag">Web Design</span><span class="tag">Corporate</span><span class="tag">Sustainability</span></div></div><div class="project-arrow">↗</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="kicker">04 — Contact</div><h2>Let’s make something.</h2></div>
+      <p>Have an idea, a project, or just want to say hi? You can reach me here.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="card contact-info reveal">
+        <p>I’m open to learning, collaborating, and talking about creative tech, web projects, or new ideas.</p>
+        <a class="contact-link" href="mailto:aflahunnisa23@gmail.com"><span class="contact-icon">✉</span><span><small>Email</small><b>aflahunnisa23@gmail.com</b></span></a>
+        <a class="contact-link" href="https://www.instagram.com/afleal.l/" target="_blank" rel="noreferrer"><span class="contact-icon">◎</span><span><small>Instagram</small><b>@afleal.l</b></span></a>
+      </div>
+      <form class="card reveal" id="contactForm">
+        <div class="field"><label>Your name</label><input id="name" type="text" placeholder="Your name" required></div>
+        <div class="field"><label>Your email</label><input id="email" type="email" placeholder="you@example.com" required></div>
+        <div class="field"><label>Message</label><textarea id="message" placeholder="Tell me what's on your mind..." required></textarea></div>
+        <button class="btn primary" type="submit">Send via email ↗</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="container">
+  <span>© 2026 Aflaa. Built with curiosity & code.</span>
+  <span>Keep learning. Keep exploring.</span>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <img id="modalImg" src="" alt="">
+    <div style="padding:12px 2px 2px">
+      <div class="kicker" id="modalKicker"></div>
+      <h2 id="modalTitle" style="margin-top:8px"></h2>
+      <p id="modalText" style="color:var(--muted)"></p>
+      <div class="tags" id="modalTags"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const body=document.body, themeBtn=document.getElementById('themeBtn');
+  const savedTheme=localStorage.getItem('afla-theme');
+  if(savedTheme==='dark'){body.classList.add('dark');themeBtn.textContent='☀';}
+  themeBtn.addEventListener('click',()=>{
+    body.classList.toggle('dark');
+    const dark=body.classList.contains('dark');
+    themeBtn.textContent=dark?'☀':'☾';
+    localStorage.setItem('afla-theme',dark?'dark':'light');
+  });
+
+  const navbar=document.getElementById('navbar');
+  document.getElementById('menuBtn').addEventListener('click',()=>navbar.classList.toggle('mobile'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>navbar.classList.remove('mobile')));
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  document.querySelectorAll('.experience').forEach(card=>{
+    const toggleSelection=()=>{
+      const selected=card.classList.toggle('is-selected');
+      card.setAttribute('aria-pressed',String(selected));
+    };
+    card.addEventListener('click',toggleSelection);
+    card.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSelection();}
+    });
+  });
+
+  const sections=[...document.querySelectorAll('main section')];
+  const links=[...document.querySelectorAll('.nav-links a')];
+  const navObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  sections.forEach(s=>navObserver.observe(s));
+
+  const projects={
+    lms:{img:'assets/project-lms.svg',kicker:'Learning platform',title:'Learning Management System',text:'A student-focused learning platform designed to keep study activities in one place — from reading learning materials and checking attendance to submitting assignments and taking quizzes.',tags:['Education','Web App','UI','Student Experience']},
+    nusalingo:{img:'assets/project-nusalingo.svg',kicker:'Language platform',title:'NusaLingo',text:'A digital learning concept that introduces the richness of Indonesian regional languages and culture through easy-to-follow content and interactive quizzes.',tags:['Culture','Language','Quiz','Learning']},
+    pos:{img:'assets/project-warungpos.svg',kicker:'Point of sale',title:'WarungPOS',text:'A practical cashier interface for a small food business. It covers menu browsing, cart management, quantity controls, payment calculations, QRIS, and transaction history.',tags:['POS','Cashier','Database','UI']},
+    harvesting:{img:'assets/project-harvesting.svg',kicker:'Company website',title:'Harvesting the Future',text:'A modern corporate web concept for a mining company, presenting resources, sustainability, and future-focused ideas through a clean visual story.',tags:['Corporate','Web Design','Sustainability','UI/UX']}
+  };
+  const modal=document.getElementById('modal');
+  document.querySelectorAll('.project').forEach(card=>card.addEventListener('click',()=>{
+    const p=projects[card.dataset.project];
+    document.getElementById('modalImg').src=p.img;
+    document.getElementById('modalKicker').textContent=p.kicker;
+    document.getElementById('modalTitle').textContent=p.title;
+    document.getElementById('modalText').textContent=p.text;
+    document.getElementById('modalTags').innerHTML=p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+    modal.classList.add('open'); document.body.style.overflow='hidden';
+  }));
+  function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('closeModal').addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+  document.getElementById('contactForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=document.getElementById('name').value.trim();
+    const email=document.getElementById('email').value.trim();
+    const message=document.getElementById('message').value.trim();
+    const subject=encodeURIComponent('Hello Aflaa — Portfolio Contact');
+    const body=encodeURIComponent(`Hi Aflaa,\n\nMy name is ${name} (${email}).\n\n${message}`);
+    window.location.href=`mailto:aflahunnisa23@gmail.com?subject=${subject}&body=${body}`;
+  });
+</script>
+</body>
+</html>

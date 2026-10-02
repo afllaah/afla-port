@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-label="Harvesting the Future sustainable resources website mockup">
+  <defs>
+    <linearGradient id="hero" x2="1" y2="1"><stop stop-color="#172b28"/><stop offset="1" stop-color="#315148"/></linearGradient>
+    <linearGradient id="earth" x2="1"><stop stop-color="#b5c878"/><stop offset="1" stop-color="#e2b663"/></linearGradient>
+  </defs>
+  <rect width="1200" height="540" fill="#f1f2ed"/>
+  <rect x="24" y="22" width="1152" height="496" rx="22" fill="#fff"/>
+  <path d="M46 22h1108a22 22 0 0 1 22 22v54H24V44a22 22 0 0 1 22-22Z" fill="#fbfcf8"/>
+  <rect x="51" y="42" width="35" height="35" rx="10" fill="#425b4b"/><path d="M60 66V53l8-6 9 6v13M64 66V56h8v10" fill="none" stroke="#e4c36d" stroke-width="2" stroke-linejoin="round"/>
+  <text x="99" y="57" fill="#27352e" font-family="Arial,sans-serif" font-size="15" font-weight="700">HARVESTING THE FUTURE</text><text x="99" y="74" fill="#899187" font-family="Arial,sans-serif" font-size="9" letter-spacing="1">RESPONSIBLE MATERIALS</text>
+  <text x="657" y="63" fill="#667269" font-family="Arial,sans-serif" font-size="10">Our approach</text><text x="746" y="63" fill="#667269" font-family="Arial,sans-serif" font-size="10">Resources</text><text x="824" y="63" fill="#667269" font-family="Arial,sans-serif" font-size="10">Sustainability</text><text x="924" y="63" fill="#667269" font-family="Arial,sans-serif" font-size="10">Insights</text>
+  <rect x="1026" y="42" width="118" height="35" rx="17" fill="#dce7d0"/><text x="1048" y="64" fill="#395443" font-family="Arial,sans-serif" font-size="10" font-weight="700">Get in touch ↗</text>
+  <path d="M24 98h1152" stroke="#eceee8"/>
+  <rect x="24" y="99" width="1152" height="312" fill="url(#hero)"/>
+  <path d="M640 411 788 245l85 88 92-132 187 210Z" fill="#64765c"/><path d="m778 256 10-11 12 13-11-2ZM862 343l11-10 12 10-11-1Z" fill="#d2d5bd"/>
+  <path d="M670 411 798 288l65 70 89-102 90 67 107-96v184Z" fill="#849174"/><path d="M712 411 831 325l58 51 81-63 56 41 91-51v108Z" fill="url(#earth)"/>
+  <path d="M737 411q47-26 94-13t81 13M797 393q34-16 68-4M936 411q47-22 91-7" fill="none" stroke="#f4dc98" stroke-width="4" opacity=".75"/>
+  <path d="M1038 284v-80m0 20-24-19m24 33 24-21M1111 316v-61m0 14-18-14m18 24 19-16" stroke="#e2c675" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="1038" cy="203" r="5" fill="#e2c675"/><circle cx="1111" cy="254" r="4" fill="#e2c675"/>
+  <rect x="77" y="143" width="205" height="25" rx="12" fill="#ffffff" fill-opacity=".12"/><circle cx="94" cy="155" r="3" fill="#d3bb72"/><text x="106" y="159" fill="#dce2ce" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="1.3">BUILDING A MORE RESILIENT FUTURE</text>
+  <text x="77" y="220" fill="#fff" font-family="Arial,sans-serif" font-size="39" font-weight="700">Harvesting the</text><text x="77" y="265" fill="#fff" font-family="Arial,sans-serif" font-size="39" font-weight="700">Future.</text>
+  <text x="79" y="295" fill="#d6dece" font-family="Arial,sans-serif" font-size="13">Essential materials. Thoughtful progress.</text>
+  <text x="79" y="316" fill="#d6dece" font-family="Arial,sans-serif" font-size="13">A lighter footprint for what comes next.</text>
+  <rect x="79" y="342" width="154" height="38" rx="19" fill="#d8c16f"/><text x="101" y="366" fill="#29392e" font-family="Arial,sans-serif" font-size="10" font-weight="700">Explore our approach →</text>
+  <rect x="24" y="411" width="1152" height="107" fill="#fbfcf8"/>
+  <text x="77" y="445" fill="#788274" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="1.3">MATERIALS FOR A CHANGING WORLD</text>
+  <text x="77" y="474" fill="#2e3c32" font-family="Arial,sans-serif" font-size="17" font-weight="700">Progress begins with responsible resources.</text>
+  <text x="77" y="494" fill="#7a8278" font-family="Arial,sans-serif" font-size="10">Connecting enduring materials with a more considered future.</text>
+  <path d="M661 436v60M835 436v60M1008 436v60" stroke="#e4e7df"/>
+  <text x="690" y="458" fill="#a18a4e" font-family="Arial,sans-serif" font-size="17" font-weight="700">01</text><text x="690" y="481" fill="#5d685d" font-family="Arial,sans-serif" font-size="10">Resource care</text>
+  <text x="864" y="458" fill="#a18a4e" font-family="Arial,sans-serif" font-size="17" font-weight="700">02</text><text x="864" y="481" fill="#5d685d" font-family="Arial,sans-serif" font-size="10">Modern methods</text>
+  <text x="1037" y="458" fill="#a18a4e" font-family="Arial,sans-serif" font-size="17" font-weight="700">03</text><text x="1037" y="481" fill="#5d685d" font-family="Arial,sans-serif" font-size="10">Shared value</text>
+</svg>
